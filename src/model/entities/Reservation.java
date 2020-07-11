@@ -1,21 +1,21 @@
-package entities;
+package model.entities;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-public class Reserva {
+public class Reservation {
 	private Integer roomNumber;
 	private Date checkin;
 	private Date checkout;
 	
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
-	public Reserva() {
-		
+	public Reservation() {		
 	}
 
-	public Reserva(Integer roomNumber, Date checkin, Date checkout) {
+	public Reservation(Integer roomNumber, Date checkin, Date checkout) {
+
 		this.roomNumber = roomNumber;
 		this.checkin = checkin;
 		this.checkout = checkout;
@@ -36,7 +36,7 @@ public class Reserva {
 	public Date getCheckout() {
 		return checkout;
 	}
-	
+
 	public long duration() {
 		long diff = checkout.getTime() - checkin.getTime();
 		return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
@@ -58,7 +58,11 @@ public class Reserva {
 				+sdf.format(checkout)
 				+", "
 				+ duration()
-				+ "nights";
+				+ " nights";
 	}
+	
+	
+	
+	
 
 }
