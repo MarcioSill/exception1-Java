@@ -1,5 +1,6 @@
 package model.entities;
 
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -43,9 +44,18 @@ public class Reservation {
 		
 	}
 	
-	public void updateDates(Date checkin, Date checkout) {
-		this.checkin = checkin;
-		this.checkout = checkout;
+	public String updateDates(Date checkIn, Date checkOut) {
+		//before anterior
+		Date now = new Date();// pega a data do momento realizado checkin		
+		if(checkIn.before(now) || checkOut.before(now)) {
+			return"Error in reservation: Reservation dates for update must be future dates";	
+		}
+		 if (!checkOut.after(checkIn)) {
+			return "Check-out date must be after check-in date";
+		}
+		this.checkin = checkIn;
+		this.checkout = checkOut;
+		return null;
 	}
 
 	@Override
